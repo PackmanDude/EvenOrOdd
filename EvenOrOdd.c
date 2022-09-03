@@ -7,34 +7,36 @@ int main(int argc, char *argv[])
 {
 	if (argc < 2)
 	{
-		fprintf(stderr, "Must be at least 1 argument passed\n");
+		fprintf(stderr, "%s: Must be at least 1 argument passed\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 
-	char *p;
+	char *ptr;
 	errno = 0;
 	for (int i = 1; i < argc; ++i)
 	{
-		long n = strtol(argv[i], &p, 0);
+		long n = strtol(argv[i], &ptr, 0);
+		long *p = &n;
 
-		if (*p != '\0')
+		if (*ptr != '\0')
 		{
-			fprintf(stderr, "Pass a number.\n");
-			exit(EXIT_FAILURE);
+			fprintf(stderr, "Not a number.\n");
+			errno = 1;
+			continue;
 		}
 
-		if ((n == LONG_MIN || n == LONG_MAX) && errno == ERANGE)
+		if ((*p == LONG_MIN || *p == LONG_MAX) && errno == ERANGE)
 		{
 			perror(argv[0]);
-			exit(EXIT_FAILURE);
+			return EXIT_FAILURE;
 		}
 
-		if ((n & 1) == 0)
+		if ((*p & 1) == 0)
 		{
 			printf("Even\n");
 		}
 
-		if ((n & 1) == 1)
+		if ((*p & 1) == 1)
 		{
 			printf("Odd\n");
 		}
