@@ -7,8 +7,8 @@ int main(int argc, char *argv[])
 {
 	if (argc < 2)
 	{
-		fprintf(stderr, "%s: Must be at least 1 argument passed\n", argv[0]);
-		exit(EXIT_FAILURE);
+		fprintf(stderr, "%s: Must be at least 1 argument passed.\n", argv[0]);
+		return EXIT_FAILURE;
 	}
 
 	char *ptr;
