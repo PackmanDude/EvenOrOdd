@@ -21,8 +21,7 @@ int main(int argc, char *argv[])
 		if (*ptr != '\0')
 		{
 			fprintf(stderr, "Not a number.\n");
-			errno = 1;
-			continue;
+			return EXIT_FAILURE;
 		}
 
 		if ((*p == LONG_MIN || *p == LONG_MAX) && errno == ERANGE)
