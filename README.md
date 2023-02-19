@@ -1,5 +1,5 @@
 # EvenOrOdd
-Example of an 'Even or Odd' made in pure C.
+Example of an 'Even or Odd' made in just C.
 
 Demo:
 
